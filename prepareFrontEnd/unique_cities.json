@@ -1,0 +1,472 @@
+[
+    {
+        "id": 1,
+        "city": "fairbanks",
+        "province": "alaska_(ak)"
+    },
+    {
+        "id": 2,
+        "city": "sunshine_coast",
+        "province": "british_columbia"
+    },
+    {
+        "id": 3,
+        "city": "buffalo",
+        "province": "new_york_(ny)"
+    },
+    {
+        "id": 4,
+        "city": "things_to_do_in_hopewell_cape",
+        "province": "new_brunswick"
+    },
+    {
+        "id": 5,
+        "city": "things_to_do_in_murray_river",
+        "province": "prince_edward_island"
+    },
+    {
+        "id": 6,
+        "city": "yellowknife",
+        "province": "northwest_territories"
+    },
+    {
+        "id": 7,
+        "city": "things_to_do_in_lytton",
+        "province": "british_columbia"
+    },
+    {
+        "id": 8,
+        "city": "things_to_do_in_port_rexton",
+        "province": "newfoundland_and_labrador"
+    },
+    {
+        "id": 9,
+        "city": "south_aegean",
+        "province": "greece"
+    },
+    {
+        "id": 10,
+        "city": "churchill",
+        "province": "manitoba"
+    },
+    {
+        "id": 11,
+        "city": "things_to_do_in_jasper_national_park",
+        "province": "alberta"
+    },
+    {
+        "id": 12,
+        "city": "mont_tremblant",
+        "province": "quebec"
+    },
+    {
+        "id": 13,
+        "city": "things_to_do_in_port_colborne",
+        "province": "ontario"
+    },
+    {
+        "id": 14,
+        "city": "napa_valley",
+        "province": "california_(ca)"
+    },
+    {
+        "id": 15,
+        "city": "things_to_do_in_kingston",
+        "province": "ontario"
+    },
+    {
+        "id": 16,
+        "city": "washington_dc",
+        "province": "district_of_columbia_(dc)"
+    },
+    {
+        "id": 17,
+        "city": "peterborough_&_the_kawarthas",
+        "province": "ontario"
+    },
+    {
+        "id": 18,
+        "city": "manchester",
+        "province": "new_hampshire_(nh)"
+    },
+    {
+        "id": 19,
+        "city": "things_to_do_in_prince_edward_island",
+        "province": "prince_edward_island"
+    },
+    {
+        "id": 20,
+        "city": "vienna_region",
+        "province": "austria"
+    },
+    {
+        "id": 21,
+        "city": "things_to_do_in_north_vancouver",
+        "province": "british_columbia"
+    },
+    {
+        "id": 22,
+        "city": "quebec_city",
+        "province": "quebec"
+    },
+    {
+        "id": 23,
+        "city": "niagara_falls",
+        "province": "new_york_(ny)"
+    },
+    {
+        "id": 24,
+        "city": "things_to_do_in_yoho_national_park",
+        "province": "alberta"
+    },
+    {
+        "id": 25,
+        "city": "niagara_falls",
+        "province": "ontario"
+    },
+    {
+        "id": 26,
+        "city": "halifax_region",
+        "province": "nova_scotia"
+    },
+    {
+        "id": 27,
+        "city": "things_to_do_in_revelstoke",
+        "province": "british_columbia"
+    },
+    {
+        "id": 28,
+        "city": "newfoundland",
+        "province": "newfoundland_and_labrador"
+    },
+    {
+        "id": 29,
+        "city": "north_holland_province",
+        "province": "the_netherlands"
+    },
+    {
+        "id": 30,
+        "city": "seattle",
+        "province": "washington_(wa)"
+    },
+    {
+        "id": 31,
+        "city": "whitehorse",
+        "province": "yukon"
+    },
+    {
+        "id": 32,
+        "city": "quintana_roo",
+        "province": "yucatan_peninsula"
+    },
+    {
+        "id": 33,
+        "city": "things_to_do_in_montreal",
+        "province": "quebec"
+    },
+    {
+        "id": 34,
+        "city": "kootenay_rockies",
+        "province": "british_columbia"
+    },
+    {
+        "id": 35,
+        "city": "campania",
+        "province": "italy"
+    },
+    {
+        "id": 36,
+        "city": "bangkok",
+        "province": "thailand"
+    },
+    {
+        "id": 37,
+        "city": "things_to_do_in_lake_louise",
+        "province": "alberta"
+    },
+    {
+        "id": 38,
+        "city": "things_to_do_in_britannia_beach",
+        "province": "british_columbia"
+    },
+    {
+        "id": 39,
+        "city": "squamish",
+        "province": "british_columbia"
+    },
+    {
+        "id": 40,
+        "city": "charlottetown",
+        "province": "prince_edward_island"
+    },
+    {
+        "id": 41,
+        "city": "maui",
+        "province": "hawaii_(hi)"
+    },
+    {
+        "id": 42,
+        "city": "lake_george",
+        "province": "new_york_(ny)"
+    },
+    {
+        "id": 43,
+        "city": "ottawa",
+        "province": "ontario"
+    },
+    {
+        "id": 44,
+        "city": "things_to_do_in_markham",
+        "province": "ontario"
+    },
+    {
+        "id": 45,
+        "city": "things_to_do_in_banff",
+        "province": "alberta"
+    },
+    {
+        "id": 46,
+        "city": "things_to_do_in_gananoque",
+        "province": "ontario"
+    },
+    {
+        "id": 47,
+        "city": "things_to_do_in_grand_falls_windsor",
+        "province": "newfoundland_and_labrador"
+    },
+    {
+        "id": 48,
+        "city": "kamloops",
+        "province": "british_columbia"
+    },
+    {
+        "id": 49,
+        "city": "okanagan_valley",
+        "province": "british_columbia"
+    },
+    {
+        "id": 50,
+        "city": "central_portugal",
+        "province": "portugal"
+    },
+    {
+        "id": 51,
+        "city": "las_vegas",
+        "province": "nevada_(nv)"
+    },
+    {
+        "id": 52,
+        "city": "skagway",
+        "province": "alaska_(ak)"
+    },
+    {
+        "id": 53,
+        "city": "bavaria",
+        "province": "germany"
+    },
+    {
+        "id": 54,
+        "city": "community_of_madrid",
+        "province": "spain"
+    },
+    {
+        "id": 55,
+        "city": "seoul",
+        "province": "south_korea"
+    },
+    {
+        "id": 56,
+        "city": "things_to_do_in_valemount",
+        "province": "british_columbia"
+    },
+    {
+        "id": 57,
+        "city": "things_to_do_in_saint-gabriel-de-valcartier",
+        "province": "quebec"
+    },
+    {
+        "id": 58,
+        "city": "canadian_rockies",
+        "province": "alberta"
+    },
+    {
+        "id": 59,
+        "city": "medano_beach",
+        "province": "things_to_do_in_cabo_san_lucas"
+    },
+    {
+        "id": 60,
+        "city": "miami",
+        "province": "florida_(fl)"
+    },
+    {
+        "id": 61,
+        "city": "things_to_do_in_bay_bulls",
+        "province": "newfoundland_and_labrador"
+    },
+    {
+        "id": 62,
+        "city": "western_cape",
+        "province": "south_africa"
+    },
+    {
+        "id": 63,
+        "city": "java",
+        "province": "indonesia"
+    },
+    {
+        "id": 64,
+        "city": "liguria",
+        "province": "italy"
+    },
+    {
+        "id": 65,
+        "city": "whistler",
+        "province": "british_columbia"
+    },
+    {
+        "id": 66,
+        "city": "things_to_do_in_cavendish",
+        "province": "prince_edward_island"
+    },
+    {
+        "id": 67,
+        "city": "saint_john",
+        "province": "new_brunswick"
+    },
+    {
+        "id": 68,
+        "city": "vancouver_island",
+        "province": "british_columbia"
+    },
+    {
+        "id": 69,
+        "city": "montreal",
+        "province": "quebec"
+    },
+    {
+        "id": 70,
+        "city": "things_to_do_in_banff_national_park",
+        "province": "alberta"
+    },
+    {
+        "id": 71,
+        "city": "calgary",
+        "province": "alberta"
+    },
+    {
+        "id": 72,
+        "city": "things_to_do_in_mont_tremblant",
+        "province": "quebec"
+    },
+    {
+        "id": 73,
+        "city": "vancouver",
+        "province": "british_columbia"
+    },
+    {
+        "id": 74,
+        "city": "ile-de-france",
+        "province": "france"
+    },
+    {
+        "id": 75,
+        "city": "things_to_do_in_advocate_harbour",
+        "province": "nova_scotia"
+    },
+    {
+        "id": 76,
+        "city": "things_to_do_in_charlottetown",
+        "province": "prince_edward_island"
+    },
+    {
+        "id": 77,
+        "city": "fraser_lake",
+        "province": "british_columbia"
+    },
+    {
+        "id": 78,
+        "city": "things_to_do_in_grenville-sur-la-rouge",
+        "province": "quebec"
+    },
+    {
+        "id": 79,
+        "city": "things_to_do_in_trinity",
+        "province": "newfoundland_and_labrador"
+    },
+    {
+        "id": 80,
+        "city": "west_coast",
+        "province": "sweden"
+    },
+    {
+        "id": 81,
+        "city": "toronto",
+        "province": "ontario"
+    },
+    {
+        "id": 82,
+        "city": "things_to_do_in_lunenburg",
+        "province": "nova_scotia"
+    },
+    {
+        "id": 83,
+        "city": "island_of_malta",
+        "province": "malta"
+    },
+    {
+        "id": 84,
+        "city": "things_to_do_in_clearwater",
+        "province": "british_columbia"
+    },
+    {
+        "id": 85,
+        "city": "bohemia",
+        "province": "czech_republic"
+    },
+    {
+        "id": 86,
+        "city": "new_york_city",
+        "province": "new_york_(ny)"
+    },
+    {
+        "id": 87,
+        "city": "kauai",
+        "province": "hawaii_(hi)"
+    },
+    {
+        "id": 88,
+        "city": "things_to_do_in_ottawa",
+        "province": "quebec"
+    },
+    {
+        "id": 89,
+        "city": "things_to_do_in_saint-jean-de-l'ile-d'orleans",
+        "province": "quebec"
+    },
+    {
+        "id": 90,
+        "city": "edmonton",
+        "province": "alberta"
+    },
+    {
+        "id": 91,
+        "city": "boston",
+        "province": "massachusetts_(ma)"
+    },
+    {
+        "id": 92,
+        "city": "zealand",
+        "province": "denmark"
+    },
+    {
+        "id": 93,
+        "city": "los_angeles",
+        "province": "california_(ca)"
+    },
+    {
+        "id": 94,
+        "city": "flanders",
+        "province": "belgium"
+    }
+]
