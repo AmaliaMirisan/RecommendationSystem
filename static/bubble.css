@@ -1,0 +1,113 @@
+:root {
+    --color-blue: #ACEEEE;
+    --color-blueRobot: rgba(51, 218, 204);
+    --color-green:#83af9b;
+    --color-black: #363636;
+    --color-beige: rgb(255, 240, 220);
+    --color-yellow: #f9cdad;
+    --color-pink: #fe4365;
+}
+
+body, html {
+    width: 100%;
+    height: 100vh;  /* Asigură-te că 'body' și 'html' ocupă întreaga înălțime vizibilă */
+    margin: 0;
+    overflow: hidden;  /* Ascunde orice conținut care depășește dimensiunea setată */
+}
+
+.robot-container {
+    display: flex;
+    flex-direction: row-reverse; /* Inversează ordinea elementelor */
+    justify-content: center;     /* Centrează elementele orizontal */
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    align-items: flex-start; /* Permite elementelor copil să înceapă de la partea de sus */
+}
+
+.robot-image {
+    width: 75vh;
+    height: auto;  /* Ajustează înălțimea proporțional */
+    position: absolute; /* Poziționează absolut în cadrul container-ului */
+    right: 2%; /* Mică distanță de la marginea dreaptă */
+    bottom: 1%; /* Mică distanță de la marginea de jos */
+}
+
+.speech-bubble {
+    font-size: 3.5vh;
+    color: var(--color-black);
+    background-color: var(--color-beige);
+    padding: 1.5em;
+    border-radius: 20px;
+    box-shadow: -4vh -4vh var(--color-blue);
+    position: absolute; /* Poziționare absolută pentru control mai bun */
+    left: 4%; /* Ajustează această valoare pentru a aduce bubble-ul mai aproape de imagine */
+    top: 30%; /* Ridică bubble-ul mai sus în pagina */
+    transform: translateY(-50%); /* Ajustează poziția verticală pentru a menține centrul vertical */
+    width: 45%; /* Lățime fixă */
+    max-width: 50%; /* Limita maxima de lățime */
+    word-wrap: break-word; /* Împarte cuvintele lungi */
+    text-align: justify; /* Aliniază textul frumos */
+}
+
+.speech-bubble:after {
+    transform: translatey(-0px) scaleX(-1);
+    content: ".";
+    font-weight: bold;
+    font-size: 10vh;
+    text-shadow: 0.5vh -0.6vh var(--color-blue);
+    text-align: left;
+    width: 10vh;
+    height: 1.5vh;
+    line-height: 5vh;
+    border-radius: 20px;
+    background-color: var(--color-beige);
+    position: absolute;
+    display: block;
+    bottom: -6vh;
+    right: -2.5vh;
+    box-shadow: 0.7vh -0.8vh var(--color-blue);
+    z-index: -2;
+
+}
+
+button {
+    padding: 0.5em 0.5em;
+    font-size: 0.5em;
+    cursor: pointer;
+    border: none;
+    background-color: var(--color-green);
+    color: white;
+    border-radius: 8px;
+    display: inline-block;
+    position: absolute;
+    opacity: 0.5; /* Inițial mai șters */
+    transition: opacity 0.3s ease; /* Suavizarea tranziției opacității */
+    filter: brightness(85%); /* Adaugă acest rând pentru suport în browsere moderne */
+
+}
+
+button:hover {
+    opacity: 1.0; /* Complet vizibil când mouse-ul este deasupra */
+    filter: brightness(100%); /* Adaugă acest rând pentru suport în browsere moderne */
+
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end; /* Aliniere la dreapta */
+    align-items: center; /* Aliniere verticală */
+    position: absolute;
+    top: 90%; /* Poziționare verticală */
+    right: 10%; /* Ajustează în funcție de necesități */
+}
+
+#backButton {
+    margin-right: 60px; /* Spațiu între butoane */
+}
+
+#startButton {
+    margin-left: 0;
+}
+
+
