@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+    .fancy-text {
+        font-weight: bold; /* Makes the text bold */
+        color: rgba(51, 208, 224, 1);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Adds shadow to the text */
+
+    }
+
+</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRAVI - Your Travel Assistant</title>
+<link href="https://fonts.googleapis.com/css?family=Baloo+2:400,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/bubble.css">
+</head>
+<body>
+<img src="{{ url_for('static', filename='images/travel-map-background.jpg') }}" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.2; z-index: -1;" alt="background">
+
+<div class="robot-container">
+    <img src="/static/images/travel-banner-image.png" alt="TRAVI, the Robot" class="robot-image">
+    <div class="speech-bubble">
+        <p>Hello! I am <span class="fancy-text">TRAVI</span>, your intelligent travel assistant. I can help you find exciting travel destinations based on your preferences. Let's start planning your next great experience together!</p>
+    <div class="button-container">
+    <button id="backButton" onclick="resetInteraction()" style="display:none;">Back</button>
+    <button id="startButton" onclick="startInteraction()">Next</button>
+</div>
+    </div>
+
+
+
+</div>
+<script>
+var originalMessage = "Hello! I am <span class=\"fancy-text\">TRAVI</span>, your intelligent travel assistant. I can help you find exciting travel destinations based on your preferences. Let's start planning your next great experience together!";
+
+function startInteraction() {
+    var messageBox = document.querySelector('.speech-bubble p');
+    var startButton = document.getElementById('startButton');
+    var backButton = document.getElementById('backButton');
+
+    messageBox.innerHTML = "Let's start planning your next great experience together!";
+    startButton.innerHTML = "Next";
+    startButton.onclick = function() {
+        window.location.href = "/chat"; // Redirect la pagina de chat
+    };
+    backButton.style.display = 'inline-block'; // Arată butonul de back
+}
+
+function resetInteraction() {
+    var messageBox = document.querySelector('.speech-bubble p');
+    var startButton = document.getElementById('startButton');
+    var backButton = document.getElementById('backButton');
+
+    messageBox.innerHTML = originalMessage; // Restabilește mesajul original
+    startButton.innerHTML = "Next";
+    startButton.onclick = startInteraction;
+    backButton.style.display = 'none'; // Ascunde butonul de back
+}
+</script>
+
+
+
+</body>
+</html>
