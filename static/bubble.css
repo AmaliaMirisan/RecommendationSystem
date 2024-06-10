@@ -10,27 +10,27 @@
 
 body, html {
     width: 100%;
-    height: 100vh;  /* Asigură-te că 'body' și 'html' ocupă întreaga înălțime vizibilă */
+    height: 100vh;  /* Ensure that 'body' and 'html' occupy the full visible height */
     margin: 0;
-    overflow: hidden;  /* Ascunde orice conținut care depășește dimensiunea setată */
+    overflow: hidden; /* Hide any content that exceeds the set dimensions */
 }
 
 .robot-container {
     display: flex;
-    flex-direction: row-reverse; /* Inversează ordinea elementelor */
-    justify-content: center;     /* Centrează elementele orizontal */
+    flex-direction: row-reverse; /* Reverse the order of elements */
+    justify-content: center;     /* Center the elements horizontally */
     width: 100%;
     height: 100vh;
     position: relative;
-    align-items: flex-start; /* Permite elementelor copil să înceapă de la partea de sus */
+    align-items: flex-start; /* Allow child elements to start from the top */
 }
 
 .robot-image {
     width: 75vh;
-    height: auto;  /* Ajustează înălțimea proporțional */
-    position: absolute; /* Poziționează absolut în cadrul container-ului */
-    right: 2%; /* Mică distanță de la marginea dreaptă */
-    bottom: 1%; /* Mică distanță de la marginea de jos */
+    height: auto;  /* Adjust the height proportionally */
+    position: absolute; /* Position absolutely within the container */
+    right: 2%; /* Small distance from the right edge */
+    bottom: 1%; /* Small distance from the bottom edge */
 }
 
 .speech-bubble {
@@ -40,14 +40,14 @@ body, html {
     padding: 1.5em;
     border-radius: 20px;
     box-shadow: -4vh -4vh var(--color-blue);
-    position: absolute; /* Poziționare absolută pentru control mai bun */
-    left: 4%; /* Ajustează această valoare pentru a aduce bubble-ul mai aproape de imagine */
-    top: 30%; /* Ridică bubble-ul mai sus în pagina */
-    transform: translateY(-50%); /* Ajustează poziția verticală pentru a menține centrul vertical */
-    width: 45%; /* Lățime fixă */
-    max-width: 50%; /* Limita maxima de lățime */
-    word-wrap: break-word; /* Împarte cuvintele lungi */
-    text-align: justify; /* Aliniază textul frumos */
+    position: absolute; /* Absolute positioning for better control */
+    left: 4%; /* Adjust this value to bring the bubble closer to the image */
+    top: 30%; /* Raise the bubble higher on the page */
+    transform: translateY(-50%); /* Adjust vertical position to maintain vertical center */
+    width: 45%; /* Fixed width */
+    max-width: 50%; /* Maximum width limit */
+    word-wrap: break-word; /* Break long words */
+    text-align: justify; /* Align text neatly */
 }
 
 .speech-bubble:after {
@@ -81,29 +81,29 @@ button {
     border-radius: 8px;
     display: inline-block;
     position: absolute;
-    opacity: 0.5; /* Inițial mai șters */
-    transition: opacity 0.3s ease; /* Suavizarea tranziției opacității */
-    filter: brightness(85%); /* Adaugă acest rând pentru suport în browsere moderne */
-
+    opacity: 0.5; /* Initially more faded */
+    transition: opacity 0.3s ease; /* Smooth opacity transition */
+    filter: brightness(85%); /* Support in modern browsers */
 }
 
 button:hover {
-    opacity: 1.0; /* Complet vizibil când mouse-ul este deasupra */
-    filter: brightness(100%); /* Adaugă acest rând pentru suport în browsere moderne */
+    opacity: 1.0; /* Fully visible when mouse is hovering */
+    filter: brightness(100%); /* Support in modern browsers */
 
 }
 
 .button-container {
     display: flex;
-    justify-content: flex-end; /* Aliniere la dreapta */
-    align-items: center; /* Aliniere verticală */
+    justify-content: flex-end; /* Align to the right */
+    align-items: center; /* Vertical alignment */
     position: absolute;
-    top: 90%; /* Poziționare verticală */
-    right: 10%; /* Ajustează în funcție de necesități */
+    top: 90%; /* Vertical positioning */
+    right: 10%; /* Adjust as needed */
+
 }
 
 #backButton {
-    margin-right: 60px; /* Spațiu între butoane */
+    margin-right: 3.5em; /* space between butons */
 }
 
 #startButton {

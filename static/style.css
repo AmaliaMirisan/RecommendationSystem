@@ -232,13 +232,13 @@ body, html {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-	filter: brightness(85%); /* Adaugă acest rând pentru suport în browsere moderne */
+	filter: brightness(85%); /* Support in modern browsers */
 
 }
 
 .choice-button:hover {
     background-color: #0056b3;
-	filter: brightness(100%); /* Adaugă acest rând pentru suport în browsere moderne */
+	filter: brightness(100%); /* Support in modern browsers */
 
 
 }
@@ -257,11 +257,11 @@ body, html {
     }
 
     .choice-bubble.previously-selected {
-      background-color: rgba(255, 0, 0, 0.3); /* Faded red */
+      background-color: #0056b3; /* Faded  */
     }
 
     .choice-bubble.selected {
-      background-color: red;
+      background-color: #004a99;
       color: white;
     }
 
@@ -288,3 +288,15 @@ body, html {
     .choice-bubble:hover {
       background-color: #0056b3;
     }
+	.end-chat-msg {
+        text-align: center;
+    }
+	.custom-link {
+    color: blue;
+    font-style: italic;
+    text-decoration: underline; /* underline initial text */
+}
+
+.custom-link:hover {
+    text-decoration: none; /* non underline on hover */
+}
