@@ -1,90 +1,87 @@
 <!DOCTYPE html>
-<html lang ="en">
+<html lang="en">
 <head>
-
-  <title>Chatbot</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 <img src="{{ url_for('static', filename='images/travel-concept-with-globe.avif') }}" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.5; z-index: -1;" alt="Background image of a globe">
 <div class="container-fluid h-100">
-  <div class="row justify-content-center h-100">
-    <div class="col-md-8 offset-md-1 col-xl-7 offset-xl-1 chat shift-left">
-      <div class="card">
-        <div class="card-header msg_head">
-          <div class="d-flex bd-highlight">
-            <div class="img_cont">
-              <img src="{{ url_for('static', filename='images/chatbot.png') }}"
-                   class="rounded-circle user_img" alt="Chatbot avatar">
-              <span class="online_icon"></span>
+    <div class="row justify-content-center h-100">
+        <div class="col-md-8 offset-md-1 col-xl-7 offset-xl-1 chat shift-left">
+            <div class="card">
+                <div class="card-header msg_head">
+                    <div class="d-flex bd-highlight">
+                        <div class="img_cont">
+                            <img src="{{ url_for('static', filename='images/chatbot.png') }}" class="rounded-circle user_img" alt="Chatbot avatar">
+                            <span class="online_icon"></span>
+                        </div>
+                        <div class="user_info">
+                            <span class="fancy-text">TRAVI</span>
+                            <p style="font-size: 1em">Let's plan your next great experience together!</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="messageFormeight" class="card-body msg_card_body">
+                </div>
+                <div class="card-footer">
+                    <form id="messageArea" class="input-group">
+                        <input type="text" id="text" name="msg" placeholder="Type your message..." autocomplete="off" class="form-control type_msg" required/>
+                        <div class="input-group-append">
+                            <button type="submit" id="send" class="input-group-text send_btn" title="Send message">
+                                <i class="fas fa-location-arrow" aria-hidden="true"></i>
+                                <span class="sr-only">Send</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="user_info">
-              <span class="fancy-text">TRAVI</span>
-              <p style="font-size: 1em">Let's plan your next great experience together!</p>
-            </div>
-          </div>
         </div>
-        <div id="messageFormeight" class="card-body msg_card_body">
-        </div>
-        <div class="card-footer">
-          <form id="messageArea" class="input-group">
-            <input type="text" id="text" name="msg" placeholder="Type your message..." autocomplete="off"
-                   class="form-control type_msg" required/>
-            <div class="input-group-append">
-              <button type="submit" id="send" class="input-group-text send_btn" title="Send message">
-                <i class="fas fa-location-arrow" aria-hidden="true"></i>
-                <span class="sr-only">Send</span> <!-- Hidden text for screen readers -->
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
     </div>
-  </div>
 </div>
 
 <script>
-  var baseStaticUrl = "{{ url_for('static', filename='') }}";
-  $(document).ready(function () {
-    // Display initial message from the chatbot
+var baseStaticUrl = "{{ url_for('static', filename='') }}";
+
+$(document).ready(function () {
     getNextQuestion();
 
     $("#messageArea").on("submit", function (event) {
-      event.preventDefault();
-      sendMessage();
+        event.preventDefault();
+        sendMessage();
     });
-  });
-
-  function getNextQuestion() {
+});
+function getNextQuestion() {
     $.ajax({
-      type: "POST",
-      url: "/get",
-      data: {msg: ""},
-      success: function (data) {
-        if (data.question) {
-          displayQuestion(data.question, data.type, data.choices);
-        } else {
-          appendBotMessage(data.response);
+        type: "POST",
+        url: "/get",
+        data: {msg: ""},
+        success: function (data) {
+            if (data.question) {
+                displayQuestion(data.question, data.type, data.choices);
+            } else if (data.response) {
+                appendBotMessage(data.response);
+                if (data.recommendations) {
+                    displayRecommendations(data.recommendations);
+                    appendFeedbackRequest(data.feedback);
+                }
+            }
         }
-      }
     });
-  }
+}
+
 
 function displayQuestion(question, type, choices) {
     const date = new Date();
     const hour = date.getHours();
     const minute = date.getMinutes();
-    const str_time = hour + ":" + minute;
+    const str_time = hour + ":" + (minute < 10 ? '0' + minute : minute);
 
     const uniqueId = `question-${Date.now()}`;
-    console.log("Generated uniqueId:", uniqueId); // Debugging pentru verificarea id-ului
 
     var questionHtml = `
         <div class="d-flex justify-content-start mb-4">
@@ -98,7 +95,6 @@ function displayQuestion(question, type, choices) {
         questionHtml += `<select id="${uniqueId}" class="form-control dropdown-select">
                             <option value="">Select a city</option>`;
         choices.forEach(choice => {
-            // Replace underscores with spaces and capitalize each word
             const formattedChoice = choice.replace(/_/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
             questionHtml += `<option value="${choice}">${formattedChoice}</option>`;
         });
@@ -120,25 +116,21 @@ function displayQuestion(question, type, choices) {
     `;
 
     $("#messageFormeight").append($.parseHTML(questionHtml));
-    scrollToBottom();  // Scroll to the bottom
+    scrollToBottom();
 
-    // Event for option bubbles
     $(`.choice-bubble`).on("click", function() {
         $(this).toggleClass("selected");
         updateChatInput();
-        $("#text").focus();  // Focus on the input field
+        $("#text").focus();
     });
 
-    // Event for dropdown changes
     $(`.dropdown-select`).on("change", function() {
         updateChatInputCities();
-        $("#text").focus();  // Focus on the input field
+        $("#text").focus();
     });
 
-    // Event for number input changes
     $(`.number-input`).on("input", function() {
         updateChatInput();
-
     });
 }
 
@@ -146,31 +138,12 @@ function updateChatInput() {
     var selectedChoices = [];
     $(`#messageFormeight .msg_cotainer:last`).find('select, input, .choice-bubble.selected').each(function() {
         var value = $(this).val() || $(this).data("value");
-        if (value) { // Check if value is not undefined or empty
+        if (value) {
             selectedChoices.push(value.replace(/[^\p{L}\p{N}\p{P}\p{Z}]/gu, ''));
         }
     });
     $("#text").val(selectedChoices.join(", "));
 }
-function updateChatInputCities() {
-    var selectedCities = [];
-    var rawCities = [];
-
-    $(`#messageFormeight .msg_cotainer:last`).find('select').each(function() {
-        var value = $(this).val();
-        if (value) { // Check if value is not undefined or empty
-            rawCities.push(value);
-            selectedCities.push(value.replace(/_/g, ' ').replace(/\b\w/g, char => char.toUpperCase()));
-        }
-    });
-
-    // Keep the raw value in data attribute and formatted value in text input
-    $("#text").val(selectedCities.join(", "));
-    if (rawCities.length > 0) {
-        $("#text").data("raw", rawCities.join(", "));  // Store raw values if there are any
-    }
-}
-
 
 
 
@@ -178,68 +151,71 @@ function updateChatInput() {
     var selectedChoices = [];
     $(`#messageFormeight .msg_cotainer:last`).find('select, input, .choice-bubble.selected').each(function() {
         var value = $(this).val() || $(this).data("value");
-        if (value) { // Check if value is not undefined or empty
+        if (value) {
             selectedChoices.push(value.replace(/[^\p{L}\p{N}\p{P}\p{Z}]/gu, ''));
         }
     });
     $("#text").val(selectedChoices.join(", "));
 }
-
 function sendMessage() {
     const date = new Date();
     const hour = date.getHours();
     const minute = date.getMinutes();
-    const str_time = hour + ":" + (minute < 10 ? '0' + minute : minute); // Ensures minutes are always two digits
+    const str_time = hour + ":" + (minute < 10 ? '0' + minute : minute);
 
     var selectedChoices = [];
     var hasSelection = false;
 
-    // Collect selected values from the last message container
-    $('#messageFormeight .msg_cotainer:last').find('select, input, .choice-bubble.selected').each(function() {
-        var value = $(this).val() || $(this).data("value");
-        if (value) {
-            selectedChoices.push(value.replace(/[^\p{L}\p{N}\p{P}\p{Z}]/gu, '')); // Remove unwanted characters
-            hasSelection = true; // Mark that at least one selection is made
-        }
-    });
-
     var userText = $("#text").val();
+
+    if (userText.toLowerCase() === "yes" || userText.toLowerCase() === "no") {
+        hasSelection = true;
+    } else {
+        $('#messageFormeight .msg_cotainer:last').find('select, input, .choice-bubble.selected').each(function() {
+            var value = $(this).val() || $(this).data("value");
+            if (value) {
+                selectedChoices.push(value.replace(/[^\p{L}\p{N}\p{P}\p{Z}]/gu, ''));
+                hasSelection = true;
+            }
+        });
+    }
+
     var rawText = selectedChoices.join(", ");
 
     $(".no-selection-feedback").remove();
     $(".invalid-feedback").remove();
 
-    // Check if any selection has been made
     if (!hasSelection) {
-        $('#messageFormeight .msg_cotainer:last').append('<div class="invalid-feedback no-selection-feedback">Please make a selection before sending the message.</div>');
+        $('#messageFormeight .msg_cotainer:last').append('<div class="invalid-feedback no-selection-feedback">' +
+            'Please make at least one selection before sending the message.</div>');
         $('#messageFormeight .msg_cotainer:last .no-selection-feedback').show();
         return;
     }
 
     var isValid = true;
 
-    // Validate inputs and selects within the last message container
-    $('#messageFormeight .msg_cotainer:last').find('input[type="number"], select').each(function() {
-        var value = $(this).val();
-        if (this.type === "number" && (value <= 0 || value === "")) {
-            $(this).addClass('is-invalid');
-            if (!$(this).next('.invalid-feedback').length) {
-                $(this).after('<div class="invalid-feedback">Please enter a value greater than 0.</div>');
+    if (userText.toLowerCase() !== "yes" && userText.toLowerCase() !== "no") {
+        $('#messageFormeight .msg_cotainer:last').find('input[type="number"], select').each(function() {
+            var value = $(this).val();
+            if (this.type === "number" && (value <= 0 || value === "")) {
+                $(this).addClass('is-invalid');
+                if (!$(this).next('.invalid-feedback').length) {
+                    $(this).after('<div class="invalid-feedback">Please enter a value greater than 0.</div>');
+                }
+                isValid = false;
             }
-            isValid = false;
-        }
-        if (this.tagName.toLowerCase() === "select" && value === "") {
-            $(this).addClass('is-invalid');
-            if (!$(this).next('.invalid-feedback').length) {
-                $(this).after('<div class="invalid-feedback">Please select a city.</div>');
+            if (this.tagName.toLowerCase() === "select" && value === "") {
+                $(this).addClass('is-invalid');
+                if (!$(this).next('.invalid-feedback').length) {
+                    $(this).after('<div class="invalid-feedback">Please select a city.</div>');
+                }
+                isValid = false;
             }
-            isValid = false;
-        }
-    });
+        });
 
-    if (!isValid) return;
+        if (!isValid) return;
+    }
 
-    // Construct the user's message HTML
     var userHtml = `
         <div class="d-flex justify-content-end mb-4">
             <div class="msg_cotainer_send bubble user">
@@ -251,16 +227,14 @@ function sendMessage() {
             </div>
         </div>`;
 
-    $("#text").val(""); // Clear the input field
-    $("#messageFormeight").append(userHtml); // Append the user message
-    scrollToBottom(); // Scroll to the bottom of the chat
+    $("#text").val("");
+    $("#messageFormeight").append(userHtml);
+    scrollToBottom();
 
-    // Disable interaction with previous selections
     $('#messageFormeight .msg_cotainer:last .choice-bubble').off('click').addClass('disabled');
     $('#messageFormeight .msg_cotainer:last select').prop('disabled', true);
     $('#messageFormeight .msg_cotainer:last input[type="number"]').prop('disabled', true).removeClass('is-invalid');
 
-    // Add a temporary loading message
     var loadingHtml = `
         <div id="loadingMessage" class="d-flex justify-content-start mb-4">
             <div class="img_cont_msg">
@@ -270,48 +244,85 @@ function sendMessage() {
                 <div class="spinner-border" role="status">
                     <span class="sr-only">Loading...</span>
                 </div>
-            <span style="color: rgba(128, 128, 128, 0.7); font-weight: bold;">Looking for destinations...</span>                <span class="msg_time">${str_time}</span>
+                <span style="color: rgba(128, 128, 128, 0.7); font-weight: bold;">Looking for recommendations...</span>
+                <span class="msg_time">${str_time}</span>
             </div>
         </div>`;
 
-    $("#messageFormeight").append($.parseHTML(loadingHtml)); // Append the loading message
-    scrollToBottom(); // Scroll to the bottom of the chat
+    $("#messageFormeight").append($.parseHTML(loadingHtml));
+    scrollToBottom();
 
-    // Send the selected choices to the server via AJAX
     $.ajax({
         data: {
-            msg: rawText,
+            msg: rawText || userText,
         },
         type: "POST",
         url: "/get",
     }).done(function (data) {
-        $("#loadingMessage").remove(); // Remove the loading message
+        $("#loadingMessage").remove();
 
-        if (data.question) {
+        if (data.error) {
+            appendBotMessageError(data.error);
+        } else if (data.end_chat) {
+            appendBotMessage(data.response);
+            setTimeout(function() {
+                $("#messageFormeight").append('<div class="end-chat-msg">Chat closed.</div>');
+                $(".card-footer").hide();
+            }, 2000); // Wait 2 seconds before closing the chat
+        } else if (data.question) {
             displayQuestion(data.question, data.type, data.choices);
-        } else {
+        } else if (data.response) {
             appendBotMessage(data.response);
             if (data.recommendations) {
                 displayRecommendations(data.recommendations);
+                appendFeedbackRequest(data.feedback);
             }
         }
     }).fail(function () {
-        $("#loadingMessage").remove(); // Remove the loading message in case of error
+        $("#loadingMessage").remove();
     });
 }
 
-
-
-
-
-function appendUserMessage(data) {
+function appendBotMessageError(errorMessage) {
     const date = new Date();
     const hour = date.getHours();
     const minute = date.getMinutes();
-    const str_time = hour + ":" + minute;
-    var userHtml = '<div class="d-flex justify-content-end mb-4"><div class="msg_cotainer_send bubble user">' + data + '<span class="msg_time_send">' + str_time + '</span></div><div class="img_cont_msg"><img src="' + baseStaticUrl + 'images/icon.png" class="rounded-circle user_img_msg" alt="User icon"></div></div>';
-    $("#messageFormeight").append($.parseHTML(userHtml));
-    scrollToBottom();  // Scroll to the bottom
+    const str_time = hour + ":" + (minute < 10 ? '0' + minute : minute);
+    var botHtml = '<div class="d-flex justify-content-start mb-4"><div class="img_cont_msg"><img src="' + baseStaticUrl + 'images/chatbot_icon.png" class="rounded-circle user_img_msg" alt="User icon"></div><div class="msg_cotainer bubble bot error">' + errorMessage + '<span class="msg_time">' + str_time + '</span></div></div>';
+    $("#messageFormeight").append($.parseHTML(botHtml));
+    scrollToBottom();
+
+    // Apelează următoarea întrebare după o întârziere de 2 secunde
+    setTimeout(function() {
+        // Nu mai apelăm getNextQuestion aici pentru a evita duplicarea întrebării
+        $.ajax({
+            type: "POST",
+            url: "/get",
+            data: {msg: ""},
+            success: function (data) {
+                if (data.question) {
+                    displayQuestion(data.question, data.type, data.choices);
+                }
+            }
+        });
+    }, 2000);
+}
+function updateChatInputCities() {
+    var selectedCities = [];
+    var rawCities = [];
+
+    $(`#messageFormeight .msg_cotainer:last`).find('select').each(function() {
+        var value = $(this).val();
+        if (value) {
+            rawCities.push(value);
+            selectedCities.push(value.replace(/_/g, ' ').replace(/\b\w/g, char => char.toUpperCase()));
+        }
+    });
+
+    $("#text").val(selectedCities.join(", "));
+    if (rawCities.length > 0) {
+        $("#text").data("raw", rawCities.join(", "));
+    }
 }
 
 
@@ -322,8 +333,9 @@ function appendBotMessage(data) {
     const str_time = hour + ":" + minute;
     var botHtml = '<div class="d-flex justify-content-start mb-4"><div class="img_cont_msg"><img src="' + baseStaticUrl + 'images/chatbot_icon.png" class="rounded-circle user_img_msg" alt="User icon"></div><div class="msg_cotainer bubble bot">' + data + '<span class="msg_time">' + str_time + '</span></div></div>';
     $("#messageFormeight").append($.parseHTML(botHtml));
-    scrollToBottom();  // Scroll to the bottom
+    scrollToBottom();
 }
+
 function formatText(text) {
     return text.replace(/_/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
 }
@@ -349,13 +361,10 @@ function displayRecommendations(recommendations) {
                         <strong>${formattedName}</strong><br>
                         Location: ${formattedLocation}<br>
                         Price: ${rec.price}<br>
-                        ${rec.link !== "Link not available"
-                            ? `<a href="${rec.link}" target="_blank">More info here</a><br>`
-                            : `You can find more info by searching this name <a href="https://www.tripadvisor.ca/" target="_blank">here</a><br>`}
+                        ${rec.link !== "Link not available" ? `<a href="${rec.link}" target="_blank" class="custom-link"">More info here</a><br>` : `You can find more info by searching this name <a href="https://www.tripadvisor.ca/" target="_blank">here</a><br>`}
                         <span class="msg_time">${str_time}</span>
                     </div>
-                </div>
-            `;
+                </div>`;
         });
     } else {
         recommendationsHtml = `
@@ -367,16 +376,43 @@ function displayRecommendations(recommendations) {
                     No recommendations available.
                     <span class="msg_time">${str_time}</span>
                 </div>
-            </div>
-        `;
+            </div>`;
     }
 
     $("#messageFormeight").append($.parseHTML(recommendationsHtml));
     scrollToBottom();
 }
 
+function appendFeedbackRequest(feedback) {
+    const date = new Date();
+    const hour = date.getHours();
+    const minute = date.getMinutes();
+    const str_time = hour + ":" + minute;
 
+    var feedbackHtml = `
+        <div class="d-flex justify-content-start mb-4 feedback-container">
+            <div class="img_cont_msg">
+                <img src="${baseStaticUrl}images/chatbot_icon.png" class="rounded-circle user_img_msg" alt="User icon">
+            </div>
+            <div class="msg_cotainer bubble bot feedback">
+                ${feedback}
+                <div>
+                    <button class="btn btn-success btn-sm feedback-btn" data-feedback="yes">Yes, end chat</button>
+                    <button class="btn btn-danger btn-sm feedback-btn" data-feedback="no">No, try again</button>
+                </div>
+                <span class="msg_time">${str_time}</span>
+            </div>
+        </div>`;
 
+    $("#messageFormeight").append($.parseHTML(feedbackHtml));
+    scrollToBottom();
+
+    $(".feedback-btn").on("click", function() {
+        var feedback = $(this).data("feedback");
+        $("#text").val(feedback);
+        sendMessage();
+    });
+}
 
 function scrollToBottom() {
     $("#messageFormeight").scrollTop($("#messageFormeight")[0].scrollHeight);
