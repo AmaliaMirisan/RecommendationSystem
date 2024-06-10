@@ -24,7 +24,7 @@ def similarity_score(tfidf_matrix, preprocessed_combinations, estimator):
 # Use the best parameters found in your previous run
 best_params = {
     'stop_words': 'english',
-    'norm': None,
+    'norm': 'l2',
     'ngram_range': (1, 1),
     'min_df': 3,
     'max_features': 25,
