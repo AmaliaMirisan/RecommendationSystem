@@ -1,4 +1,4 @@
-from LoadData import load_data, load_json_data_for_links, filter_attractions_cluster
+from TFIDFmodel.LoadData import load_data, load_json_data_for_links, filter_attractions_cluster
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
@@ -24,7 +24,6 @@ details_files = ['attractions_details_batch1.json', 'attractions_details_batch2.
 reviews_files = ['attractions_reviews_batch1.json', 'attractions_reviews_batch2.json']
 all_attractions = load_data(details_files, reviews_files)
 
-
 filtered_attractions, filtered_no_reviews = filter_attractions_cluster(all_attractions)
 reviews_docs = [attraction['reviews'] for attraction in filtered_attractions if 'reviews' in attraction]
 reviews_docs = [" ".join(reviews) for reviews in reviews_docs]
@@ -49,6 +48,7 @@ param_grid = {
 # Setup grid search; use silhouette score as a custom scoring function
 from sklearn.base import clone
 
+
 # Define a custom scorer that properly uses the transformed data for scoring
 def silhouette_scorer(estimator, X):
     # Clone the estimator to ensure the original pipeline remains unmodified
@@ -63,6 +63,7 @@ def silhouette_scorer(estimator, X):
     score = silhouette_score(tfidf_vectors, labels)
     return score
 
+
 # Now setup and run your grid search as before
 grid_search = GridSearchCV(pipeline, param_grid, scoring=silhouette_scorer, cv=3, verbose=10)
 grid_search.fit(reviews_docs)
@@ -72,9 +73,9 @@ print("Best silhouette score:", grid_search.best_score_)
 
 from joblib import dump
 
-# După antrenarea modelului și vectorizatorului TF-IDF, salvează-le pe disc
-# Salvează modelul KMeans
+# After training the model and the TF-IDF vectorizer, save them to disk
+# save the model KMeans
 dump(grid_search.best_estimator_.named_steps['kmeans'], 'kmeans_model.joblib')
 
-# Salvează vectorizatorul TF-IDF
+# save TF-IDF vectorizer
 dump(grid_search.best_estimator_.named_steps['tfidf'], 'tfidf_vectorizer.joblib')
