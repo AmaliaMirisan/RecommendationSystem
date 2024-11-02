@@ -4,7 +4,7 @@
 TRAVI is an interactive chatbot-based system designed to provide personalized recommendations for tourist attractions. By leveraging content-based filtering techniques, specifically the TF-IDF model and Cosine Similarity, TRAVI analyzes user preferences and offers relevant suggestions. Built with Flask, Python, HTML, CSS, and JavaScript, this system enhances travel planning with an intelligent, accessible interface.
   
 <p align="center">
-  <img src="https://github.com/AmaliaMirisan/RecommendationSystem/blob/main/static/images/travel-banner-image.png" alt="Travel Banner" align="left" width="20%">
+  <img src="https://github.com/AmaliaMirisan/RecommendationSystem/blob/main/static/images/travel-banner-image.png" alt="Travel Banner" align="left" width="30%">
 </p>
 
 
